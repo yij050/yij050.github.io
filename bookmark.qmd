@@ -1,0 +1,45 @@
+---
+title: "Bookmark"
+format: html
+---
+
+::: {.bookmark-page}
+
+(archive) = *f*(time, mood, season)
+
+::: {.bookmark-section}
+### reading
+
+*book, reader, season*  
+Fitzgerald | Hemingway | Faulkner | Salinger | Wolfe
+
+(01) *A Perfect Day for Bananafish*  
+(02) *In Another Country*  
+(03) *Across the River and Into the Trees*  
+(04) *This Side of Paradise*  
+(05) *From Death to Morning*  
+(06) *My Lost City*  
+(07) *The Rich Boy*  
+(08) *Banal Story*  
+(09) *Save Me the Waltz*  
+(10) *Babylon Revisited*  
+(11) *The Beautiful and Damned*  
+(12) *To Have and Have Not*  
+(13) *The Snows of Kilimanjaro*  
+(14) *Tender Is the Night*  
+(15) *The Garden of Eden*  
+(16) *Lo, the Poor Peacock*  
+(17) *The Killers*  
+(18) *Islands in the Stream*  
+(19) *Ice Palace*  
+(20) *The Unvanquished*  
+(21) *The Undefeated*  
+(22) *As I Lay Dying*  
+(23) *For Whom the Bell Tolls*  
+(24) *The Catcher in the Rye*  
+
+Books I wanted to read after watching Banana Fish.
+
+:::
+
+:::

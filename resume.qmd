@@ -1,0 +1,23 @@
+---
+title: "Resume"
+format: html
+---
+
+::: {.resume-page}
+
+::: {.resume-meta-row}
+<div class="resume-last-updated">
+  <div class="resume-label">LAST UPDATED</div>
+  <div class="resume-date">April 2026</div>
+</div>
+
+<div class="resume-download-wrap">
+  <a class="resume-download-btn" href="files/resume.pdf" target="_blank">Download Resume</a>
+</div>
+:::
+
+::: {.resume-pdf-wrap}
+<iframe src="files/resume.pdf"></iframe>
+:::
+
+:::

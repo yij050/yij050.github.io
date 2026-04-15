@@ -1,0 +1,223 @@
+/* css styles */
+/* =========================
+   Global
+========================= */
+
+main.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================
+   Home page bio list
+========================= */
+
+.profile-card {
+  max-width: 780px;
+  margin: 20px auto 40px auto;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.bio-list {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+.bio-item {
+  margin-bottom: 2px;
+  letter-spacing: 0.1px;
+}
+
+.level-1 {
+  padding-left: 0;
+  font-size: 1.15rem;
+}
+
+.level-2 {
+  padding-left: 2rem;
+  font-size: 1.02rem;
+}
+
+/* =========================
+   Resume page
+========================= */
+
+.resume-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem 2rem;
+}
+
+.resume-meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.resume-last-updated {
+  text-align: left;
+}
+
+.resume-label {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  margin-bottom: 0.4rem;
+}
+
+.resume-date {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.resume-download-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.resume-download-btn {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  border-radius: 0.7rem;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.resume-pdf-wrap {
+  margin-top: 1.5rem;
+}
+
+.resume-pdf-wrap iframe,
+.resume-pdf-wrap embed,
+.resume-pdf-wrap object {
+  width: 100%;
+  min-height: 900px;
+  border: none;
+}
+
+/* =========================
+   Bookmark page
+========================= */
+
+.bookmark-page {
+  max-width: 860px;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 2rem 2rem 4rem 0;
+  text-align: left;
+}
+
+.bookmark-section {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.bookmark-section h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+  text-transform: lowercase;
+}
+
+.bookmark-section p,
+.bookmark-section {
+  font-size: 1.08rem;
+  line-height: 2;
+}
+
+/* =========================
+   Playlist page
+========================= */
+
+.playlist-page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem 2rem;
+  text-align: left;
+}
+
+.playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.playlist-intro {
+  flex: 1;
+  text-align: left;
+}
+
+.playlist-tags {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  max-width: 560px;
+  text-align: left;
+}
+
+.playlist-cover-page {
+  width: 260px;
+  max-width: 260px;
+  border-radius: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.playlist-list {
+  font-size: 1.08rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.playlist-notes {
+  font-size: 1.02rem;
+  line-height: 1.9;
+  max-width: 760px;
+  opacity: 0.9;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .bookmark-page,
+  .playlist-page {
+    padding: 1.2rem 1.2rem 3rem 1.2rem;
+  }
+
+  .playlist-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .playlist-cover-page {
+    width: 200px;
+    max-width: 200px;
+    margin-left: 0;
+  }
+
+  .playlist-tags,
+  .playlist-list,
+  .bookmark-section {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+}

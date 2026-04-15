@@ -1,0 +1,26 @@
+---
+title: "Ying"
+image: "files/profile_pic.jpg"
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      href: mailto:yij050@ucsd.edu
+    - icon: linkedin
+      href: https://www.linkedin.com/groups/12052859/
+---
+
+::: {.profile-card}
+
+<div class="bio-list">
+  <div class="bio-item level-1">🇺🇸 UCSD (M.S. in Business Analytics) 📊</div>
+<div class="bio-item level-1">🇨🇳 SUIBE (B.M. in International Accounting) 📘</div>
+<div class="bio-item level-1">🇯🇵 SISU (Minor in Japanese) 🇯🇵</div>
+<div class="bio-item level-1">🇺🇸 UCLA (Exch. in Marketing) 🌴</div>
+<div class="bio-item level-1">🇨🇳 KPMG Shanghai, Audit Associate 🏢</div>
+<div class="bio-item level-1">🇺🇸 USCPA Tutor 📚</div>
+<div class="bio-item level-1">🇬🇧 ACCA Affiliate (ACCA) 📑</div>
+
+</div>
+
+:::

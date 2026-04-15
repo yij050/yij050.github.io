@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Ying"
+  navbar:
+    left:
+      - href: index.qmd
+        text: About
+      - href: resume.qmd
+        text: Resume
+      - href: bookmark.qmd
+        text: Bookmark
+      - href: playlist.qmd
+        text: Playlist
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    page-layout: full
+
+editor: visual
+
+
