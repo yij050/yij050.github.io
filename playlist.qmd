@@ -3,41 +3,41 @@ title: "Playlist"
 format: html
 ---
 
-::: {.playlist-page}
-
+:::::::: playlist-page
 (playlist) = *f*(time, weather, mood)
 
-::: {.playlist-header}
-<div class="playlist-intro">
-  <div class="playlist-tags">J-rock | shoegaze | dream pop | alt rock | pop punk | classical</div>
-</div>
+::::: playlist-header
+:::: playlist-intro
+::: playlist-tags
+J-rock \| shoegaze \| dream pop \| alt rock \| pop punk \| classical
+:::
+::::
+:::::
+
+::: playlist-list
+(1) ONE OK ROCK\
+(2) RADWIMPS\
+(3) Vaundy\
+(4) 米津玄師\
+(5) 椎名林檎\
+(6) 東京事変\
+(7) きのこ帝国\
+(8) Ichiko Aoba\
+(9) My Hair is Bad\
+(10) back number\
+(11) ヨルシカ\
+(12) indigo la End\
+(13) King Gnu\
+(14) YOASOBI\
+(15) 宇多田ヒカル\
+(16) あいみょん\
+(17) Linkin Park\
+(18) Green Day\
+(19) Bob Dylan\
+(20) Mozart\
 :::
 
-::: {.playlist-list}
-(01) ONE OK ROCK  
-(02) RADWIMPS  
-(03) Vaundy  
-(04) 米津玄師  
-(05) 椎名林檎  
-(06) 東京事変  
-(07) きのこ帝国  
-(08) Ichiko Aoba  
-(09) My Hair is Bad  
-(10) back number  
-(11) ヨルシカ  
-(12) indigo la End  
-(13) King Gnu  
-(14) YOASOBI  
-(15) 宇多田ヒカル  
-(16) あいみょん  
-(17) Linkin Park  
-(18) Green Day  
-(19) Bob Dylan  
-(20) Mozart  
-:::
-
-::: {.playlist-notes}
+::: playlist-notes
 A mix of Japanese rock, shoegaze, dream pop, alt rock, pop punk, and a little classical music.
 :::
-
-:::
+::::::::

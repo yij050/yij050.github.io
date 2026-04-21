@@ -10,17 +10,34 @@ about:
       href: https://www.linkedin.com/groups/12052859/
 ---
 
-::: {.profile-card}
-
-<div class="bio-list">
-  <div class="bio-item level-1">🇺🇸 UCSD (M.S. in Business Analytics) 📊</div>
-<div class="bio-item level-1">🇨🇳 SUIBE (B.M. in International Accounting) 📘</div>
-<div class="bio-item level-1">🇯🇵 SISU (Minor in Japanese) 🇯🇵</div>
-<div class="bio-item level-1">🇺🇸 UCLA (Exch. in Marketing) 🌴</div>
-<div class="bio-item level-1">🇨🇳 KPMG Shanghai, Audit Associate 🏢</div>
-<div class="bio-item level-1">🇺🇸 USCPA Tutor 📚</div>
-<div class="bio-item level-1">🇬🇧 ACCA Affiliate (ACCA) 📑</div>
-
-</div>
-
+::::::::::: profile-card
+:::::::::: bio-list
+::: {.bio-item .level-1}
+🇺🇸 UCSD (M.S. in Business Analytics) 📊
 :::
+
+::: {.bio-item .level-1}
+🇨🇳 SUIBE (B.M. in International Accounting) 📘
+:::
+
+::: {.bio-item .level-1}
+🇯🇵 SISU (Minor in Japanese) 🇯🇵
+:::
+
+::: {.bio-item .level-1}
+🇺🇸 UCLA (Exch. in Marketing) 🌴
+:::
+
+::: {.bio-item .level-1}
+🇨🇳 KPMG Shanghai, Audit Associate 🏢
+:::
+
+::: {.bio-item .level-1}
+🇺🇸 USCPA Tutor 📚
+:::
+
+::: {.bio-item .level-1}
+🇬🇧 ACCA Affiliate (ACCA) 📑
+:::
+::::::::::
+:::::::::::

@@ -10,6 +10,8 @@ website:
         text: About
       - href: resume.qmd
         text: Resume
+      - href: projects.qmd
+        text: Projects
       - href: bookmark.qmd
         text: Bookmark
       - href: playlist.qmd

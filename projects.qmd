@@ -1,0 +1,16 @@
+---
+title: "My Projects"
+listing:
+  contents:
+    - path: projects/hw1-ab-testing
+      title: "A/B Testing a Call to Action"
+      description: "Simulating key ideas from classical frequentist statistics to test whether different newsletter sign-up prompts affect conversion rates."
+      categories: [Statistics, A/B Testing]
+    - path: projects/hw2-card-krueger
+      title: "Replication of Card & Krueger (1994)"
+      description: "Replicating the landmark minimum wage study using difference-in-differences. Finds no evidence that raising the minimum wage reduced fast-food employment."
+      categories: [Economics, Diff-in-Diff]
+  type: grid
+  sort: "date desc"
+page-layout: full
+---
