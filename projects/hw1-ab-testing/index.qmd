@@ -179,9 +179,9 @@ x_max = max(max(e) for e in all_estimates)
 
 for i, (n, estimates) in enumerate(zip(sample_sizes, all_estimates)):
     ax = axes[i]
-    ax.hist(estimates, bins=40, color="#4C72B0", edgecolor="white", 
+    ax.hist(estimates, bins=40, color="#4C72B0", edgecolor="white",
             linewidth=0.4, density=True)
-    ax.axvline(x=0.04, color="#C44E52", linewidth=1.5, 
+    ax.axvline(x=0.04, color="#C44E52", linewidth=1.5,
                linestyle="--", label=r"True $\theta = 0.04$")
     ax.set_xlim(x_min, x_max)
     ax.set_title(f"n = {n}", fontsize=12)
@@ -191,7 +191,7 @@ for i, (n, estimates) in enumerate(zip(sample_sizes, all_estimates)):
     if i == 0:
         ax.legend(fontsize=10)
 
-fig.suptitle(r"Sampling Distribution of $\hat\theta$ at Different Sample Sizes", 
+fig.suptitle(r"Sampling Distribution of $\hat\theta$ at Different Sample Sizes",
              fontsize=13, y=1.01)
 plt.tight_layout()
 plt.show()
@@ -207,6 +207,7 @@ Now that we have seen the CLT in action, we can use it to perform a formal **hyp
 -   **Alternative hypothesis** $H_1: \theta \neq 0$ — the two CTAs produce different sign-up rates
 
 Our goal is to assess whether the data provide enough evidence to reject $H_0$.
+This helps connect the statistical test to our original question about which CTA performs better in practice.
 
 To do this, we need to **standardize** $\hat\theta$ into a test statistic:
 
@@ -249,6 +250,7 @@ print(f"P-value:                     {p_value:.4f}")
 ```
 
 Our test statistic is $z \approx 2.79$, and the associated two-sided p-value is approximately $0.005$. Since this is well below the conventional significance level of $\alpha = 0.05$, we **reject the null hypothesis**. The data provide strong evidence that the two CTAs produce different sign-up rates. In practical terms, CTA A appears to outperform CTA B, and this difference is unlikely to be due to chance alone.
+While the result is statistically significant, it's still helpful to think about how meaningful this difference is in practice.
 
 ## The T-Test as a Regression
 
@@ -342,7 +344,7 @@ false_positives = 0
 for _ in range(n_experiments):
     data_A = np.random.binomial(1, pi_A, n_total)
     data_B = np.random.binomial(1, pi_B, n_total)
-    
+
     rejected = False
     for n in peek_intervals:
         A = data_A[:n]
@@ -358,7 +360,7 @@ for _ in range(n_experiments):
         if p_value < 0.05:
             rejected = True
             break
-    
+
     if rejected:
         false_positives += 1
 
