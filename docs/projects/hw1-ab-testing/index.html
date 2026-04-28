@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e145b359b9b00310f5d8cda9dc245b1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-8fedf4b0b09d7e3efc607d46e5f6a2f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -246,7 +246,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="simulating-data">Simulating Data</h2>
 <p>In the real world, we would never know the true values of <span class="math inline">\(\pi_A\)</span> and <span class="math inline">\(\pi_B\)</span> — that is precisely why we need statistics. However, for the purpose of this exercise, we will set these values ourselves. This allows us to study how well our estimator <span class="math inline">\(\hat\theta\)</span> recovers the truth when we already know what the truth is.</p>
 <p>We set <span class="math inline">\(\pi_A = 0.22\)</span> and <span class="math inline">\(\pi_B = 0.18\)</span>, so the true difference is <span class="math inline">\(\theta = \pi_A - \pi_B = 0.04\)</span>. We then simulate 1,000 visitors for each CTA group, for a total of 2,000 observations.</p>
-<div id="e55f4022" class="cell" data-execution_count="1">
+<div id="2e3ca0dd" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
@@ -270,7 +270,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-law-of-large-numbers">The Law of Large Numbers</h2>
 <p>The <strong>Law of Large Numbers</strong> (LLN) states that as the sample size grows, the sample mean converges to the true population mean. This is exactly what justifies our estimator <span class="math inline">\(\hat\theta = \bar{X}_A - \bar{X}_B\)</span>: given enough observations, we can be confident that <span class="math inline">\(\hat\theta\)</span> will be close to the true difference <span class="math inline">\(\theta = 0.04\)</span>.</p>
 <p>To see this in action, we compute the element-wise difference between each visitor’s outcome in CTA A and CTA B, then track the running (cumulative) average of those differences as we add one observation at a time.</p>
-<div id="13165af3" class="cell" data-execution_count="2">
+<div id="6fa63be9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -297,7 +297,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-3-output-1.png" width="853" height="422" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-3-output-1.png" width="853" height="421" class="figure-img"></p>
 <figcaption>Running mean of (X_A - X_B) converging to the true difference θ = 0.04</figcaption>
 </figure>
 </div>
@@ -309,7 +309,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="bootstrap-standard-errors">Bootstrap Standard Errors</h2>
 <p>We now trust that <span class="math inline">\(\hat\theta\)</span> is a reliable estimator of the true difference <span class="math inline">\(\theta\)</span>. But a single point estimate is not enough — we also want to know how <strong>precise</strong> it is. This is where the <strong>bootstrap</strong> comes in.</p>
 <p>The idea is simple: instead of relying on a mathematical formula for the standard error, we let the data “speak for itself.” We repeatedly resample (with replacement) from our observed data, compute <span class="math inline">\(\hat\theta^*\)</span> on each resample, and use the spread of those resampled estimates as our measure of uncertainty. The standard deviation of the bootstrapped estimates is our <strong>bootstrapped standard error</strong>.</p>
-<div id="9b95371a" class="cell" data-execution_count="3">
+<div id="dc7e223f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
@@ -360,11 +360,11 @@ Analytical SE:                0.0178
 <h2 class="anchored" data-anchor-id="the-central-limit-theorem">The Central Limit Theorem</h2>
 <p>Even though each individual visitor’s outcome follows a Bernoulli distribution — which only takes values 0 or 1 — the <strong>Central Limit Theorem</strong> (CLT) tells us something remarkable: as the sample size grows, the sampling distribution of <span class="math inline">\(\hat\theta = \bar{X}_A - \bar{X}_B\)</span> becomes approximately <strong>Normal</strong>, regardless of the shape of the underlying distribution. This is what allows us to use tools like confidence intervals and hypothesis tests that rely on normality assumptions.</p>
 <p>To see this in action, we simulate 1,000 experiments at four different sample sizes and plot the distribution of <span class="math inline">\(\hat\theta\)</span> each time.</p>
-<div id="26b9b521" class="cell" data-execution_count="4">
+<div id="ae088c4b" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-5-output-1.png" width="949" height="680" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-5-output-1.png" width="951" height="681" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -378,7 +378,7 @@ Analytical SE:                0.0178
 <li><strong>Null hypothesis</strong> <span class="math inline">\(H_0: \theta = 0\)</span> — the two CTAs produce the same sign-up rate</li>
 <li><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1: \theta \neq 0\)</span> — the two CTAs produce different sign-up rates</li>
 </ul>
-<p>Our goal is to assess whether the data provide enough evidence to reject <span class="math inline">\(H_0\)</span>.</p>
+<p>Our goal is to assess whether the data provide enough evidence to reject <span class="math inline">\(H_0\)</span>. This helps connect the statistical test to our original question about which CTA performs better in practice.</p>
 <p>To do this, we need to <strong>standardize</strong> <span class="math inline">\(\hat\theta\)</span> into a test statistic:</p>
 <p><span class="math display">\[z = \frac{\hat\theta - 0}{SE(\hat\theta)}\]</span></p>
 <p>Here is the logic behind this step:</p>
@@ -388,7 +388,7 @@ Analytical SE:                0.0178
 <li><p>Because we know the distribution of <span class="math inline">\(z\)</span> under <span class="math inline">\(H_0\)</span>, we can compute a <strong>p-value</strong>: the probability of observing a test statistic at least as extreme as ours, assuming <span class="math inline">\(H_0\)</span> is true.</p></li>
 </ol>
 <p>You may have heard this referred to as a <strong>t-test</strong>. Technically, the classical t-test arises when data are drawn from a Normal distribution and the variance is unknown — in that setting, the test statistic follows an exact t-distribution. Our data are Bernoulli (not Normal), so there is no exact t-distribution result here. The CLT gives us approximate Normality, and since we estimate the SE from the data, what we are doing is closer to a <strong>z-test</strong>. In practice, for large samples the t-distribution and the standard Normal are nearly identical, so the distinction has little practical consequence — but it is worth understanding why.</p>
-<div id="5158e36f" class="cell" data-execution_count="5">
+<div id="ffc0f5fc" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -418,7 +418,7 @@ Test statistic (z):          2.1388
 P-value:                     0.0325</code></pre>
 </div>
 </div>
-<p>Our test statistic is <span class="math inline">\(z \approx 2.79\)</span>, and the associated two-sided p-value is approximately <span class="math inline">\(0.005\)</span>. Since this is well below the conventional significance level of <span class="math inline">\(\alpha = 0.05\)</span>, we <strong>reject the null hypothesis</strong>. The data provide strong evidence that the two CTAs produce different sign-up rates. In practical terms, CTA A appears to outperform CTA B, and this difference is unlikely to be due to chance alone.</p>
+<p>Our test statistic is <span class="math inline">\(z \approx 2.79\)</span>, and the associated two-sided p-value is approximately <span class="math inline">\(0.005\)</span>. Since this is well below the conventional significance level of <span class="math inline">\(\alpha = 0.05\)</span>, we <strong>reject the null hypothesis</strong>. The data provide strong evidence that the two CTAs produce different sign-up rates. In practical terms, CTA A appears to outperform CTA B, and this difference is unlikely to be due to chance alone. While the result is statistically significant, it’s still helpful to think about how meaningful this difference is in practice.</p>
 </section>
 <section id="the-t-test-as-a-regression" class="level2">
 <h2 class="anchored" data-anchor-id="the-t-test-as-a-regression">The T-Test as a Regression</h2>
@@ -436,7 +436,7 @@ P-value:                     0.0325</code></pre>
 <li><span class="math inline">\(\beta_0 + \beta_1\)</span> is the expected outcome when <span class="math inline">\(D_i = 1\)</span> — i.e., the average sign-up rate for CTA A, which estimates <span class="math inline">\(\pi_A\)</span>.</li>
 <li>Therefore <span class="math inline">\(\beta_1 = \pi_A - \pi_B = \theta\)</span>, and the OLS estimate <span class="math inline">\(\hat\beta_1\)</span> is numerically identical to <span class="math inline">\(\hat\theta = \bar{X}_A - \bar{X}_B\)</span>.</li>
 </ol>
-<div id="f0377428" class="cell" data-execution_count="6">
+<div id="c96d3eea" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
@@ -492,7 +492,7 @@ CTA A indicator (β₁)     0.038      0.0178       2.1388   0.0325</code></pre>
 <p>This seems reasonable, but it is actually a serious statistical mistake.</p>
 <p>A single hypothesis test at <span class="math inline">\(\alpha = 0.05\)</span> has a 5% chance of a <strong>false positive</strong> — rejecting <span class="math inline">\(H_0\)</span> even when it is true, purely by chance. But every time you peek and run another test, you get another opportunity for a false positive. The more you peek, the higher the chance that at least one peek produces a spurious significant result — even if there is truly no difference between the CTAs.</p>
 <p>We can demonstrate this with a simulation. We set up a world where <span class="math inline">\(H_0\)</span> is actually true: both CTAs have the same sign-up rate, <span class="math inline">\(\pi_A = \pi_B = 0.20\)</span>, so the true difference is <span class="math inline">\(\theta = 0\)</span>. We then simulate 10,000 experiments, peeking after every 100 observations, and record how often at least one peek produces a false positive.</p>
-<div id="d22edac2" class="cell" data-execution_count="7">
+<div id="7f2d4f03" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -507,7 +507,7 @@ CTA A indicator (β₁)     0.038      0.0178       2.1388   0.0325</code></pre>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_experiments):</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    data_A <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, pi_A, n_total)</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    data_B <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, pi_B, n_total)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    rejected <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> peek_intervals:</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> data_A[:n]</span>
@@ -523,7 +523,7 @@ CTA A indicator (β₁)     0.038      0.0178       2.1388   0.0325</code></pre>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> p_value <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>            rejected <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rejected:</span>
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        false_positives <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
