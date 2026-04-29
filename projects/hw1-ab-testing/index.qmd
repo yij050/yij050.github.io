@@ -16,8 +16,8 @@ Imagine you run a website with a newsletter that your visitors can sign up for o
 
 In this experiment, visitors are randomly assigned to see one of two calls to action (CTAs):
 
--   **CTA A**: "Sign up for our newsletter here!"
--   **CTA B**: "Stay up to date by signing up!"
+- **CTA A**: "Sign up for our newsletter here!"
+- **CTA B**: "Stay up to date by signing up!"
 
 By randomly assigning visitors to each version, we ensure that any difference in sign-up rates between the two groups can be attributed to the wording itself, rather than other factors. In this post, we'll walk through the key ideas of classical frequentist statistics using simulations, applying them to analyze the results of this A/B test.
 
@@ -121,7 +121,7 @@ for i in range(n_boot):
     resample_B = np.random.choice(data_B, size=n, replace=True)
     boot_estimates[i] = resample_A.mean() - resample_B.mean()
 
-boot_se = np.std(boot_estimates)
+boot_se = np.std(boot_estimates, ddof=1)
 
 # Analytical SE
 pi_hat_A = data_A.mean()
@@ -203,11 +203,10 @@ The four histograms tell a clear story. At $n = 25$, the distribution of $\hat\t
 
 Now that we have seen the CLT in action, we can use it to perform a formal **hypothesis test**. The idea is to ask: if there were truly no difference between the two CTAs, how likely would we be to observe a difference as large as the one we actually saw? We formalize this by setting up two competing hypotheses:
 
--   **Null hypothesis** $H_0: \theta = 0$ — the two CTAs produce the same sign-up rate
--   **Alternative hypothesis** $H_1: \theta \neq 0$ — the two CTAs produce different sign-up rates
+- **Null hypothesis** $H_0: \theta = 0$ — the two CTAs produce the same sign-up rate
+- **Alternative hypothesis** $H_1: \theta \neq 0$ — the two CTAs produce different sign-up rates
 
-Our goal is to assess whether the data provide enough evidence to reject $H_0$.
-This helps connect the statistical test to our original question about which CTA performs better in practice.
+Our goal is to assess whether the data provide enough evidence to reject $H_0$. This helps connect the statistical test to our original question about which CTA performs better in practice.
 
 To do this, we need to **standardize** $\hat\theta$ into a test statistic:
 
@@ -249,8 +248,7 @@ print(f"Test statistic (z):          {z:.4f}")
 print(f"P-value:                     {p_value:.4f}")
 ```
 
-Our test statistic is $z \approx 2.79$, and the associated two-sided p-value is approximately $0.005$. Since this is well below the conventional significance level of $\alpha = 0.05$, we **reject the null hypothesis**. The data provide strong evidence that the two CTAs produce different sign-up rates. In practical terms, CTA A appears to outperform CTA B, and this difference is unlikely to be due to chance alone.
-While the result is statistically significant, it's still helpful to think about how meaningful this difference is in practice.
+ Our test statistic is $z \approx 2.14$, and the associated two-sided p-value is approximately $0.033$.Since this is well below the conventional significance level of $\alpha = 0.05$, we **reject the null hypothesis**. The data provide strong evidence that the two CTAs produce different sign-up rates. In practical terms, CTA A appears to outperform CTA B, and this difference is unlikely to be due to chance alone. While the result is statistically significant, it's still helpful to think about how meaningful this difference is in practice.
 
 ## The T-Test as a Regression
 
@@ -258,8 +256,8 @@ The two-sample test we just ran turns out to be mathematically equivalent to a s
 
 The setup is straightforward. We stack the CTA A and CTA B data into a single dataset with two columns:
 
--   $Y_i$: the outcome for visitor $i$ (1 if they signed up, 0 otherwise)
--   $D_i$: an indicator for which CTA they saw (1 = CTA A, 0 = CTA B)
+- $Y_i$: the outcome for visitor $i$ (1 if they signed up, 0 otherwise)
+- $D_i$: an indicator for which CTA they saw (1 = CTA A, 0 = CTA B)
 
 We then fit the regression:
 
@@ -369,6 +367,6 @@ print(f"Nominal false positive rate (single test):  5.00%")
 print(f"Empirical false positive rate (peeking):    {empirical_fpr * 100:.2f}%")
 ```
 
-The results are striking. While a single test has a nominal false positive rate of 5%, peeking at 10 intermediate points inflates this to roughly **26%** — more than five times higher. This means that if you follow your boss's strategy, more than 1 in 4 experiments will produce a false positive, leading you to declare a winner when there is truly no difference.
+The results are striking. While a single test has a nominal false positive rate o f 5%, peeking at 10 intermediate points inflates this to roughly **19%**— more than five times higher. This means that if you follow your boss's strategy, more than 1 in 4 experiments will produce a false positive, leading you to declare a winner when there is truly no difference.
 
 This phenomenon is known as **Type I error inflation**, and it is one of the most common mistakes in A/B testing in practice. The fix is to either commit to a single test at a pre-specified sample size, or use methods specifically designed for sequential testing — such as the Bonferroni correction, which adjusts the significance threshold downward to account for multiple comparisons, or more sophisticated approaches like sequential probability ratio tests.
