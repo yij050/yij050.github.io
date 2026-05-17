@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.13">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zihui Yao">
+<meta name="dcterms.date" content="2026-04-28">
+
+<title>Replication of Angrist and Lavy (1999) – Ying</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-e145b359b9b00310f5d8cda9dc245b1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Ying</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../resume.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../bookmark.html"> 
+<span class="menu-text">Bookmark</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../playlist.html"> 
+<span class="menu-text">Playlist</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Replication of Angrist and Lavy (1999)</h1>
+<p class="subtitle lead">Using Maimonides’ Rule to Estimate the Effect of Class Size on Scholastic Achievement</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zihui Yao </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 28, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Does reducing class size improve student learning? This question has major implications for education policy, yet answering it is surprisingly difficult. Schools with smaller classes often differ systematically from schools with larger classes — for example, wealthier districts may invest in smaller classes while also having students with stronger academic backgrounds. Any simple comparison of test scores across class sizes confounds the effect of class size itself with these underlying differences.</p>
+<p>Angrist and Lavy (1999) overcome this challenge using a clever natural experiment rooted in an ancient religious rule. In the twelfth century, the rabbinic scholar Maimonides interpreted the Talmud as imposing a maximum class size of 40 students. Remarkably, this same rule has governed Israeli public school class sizes since 1969. Under Maimonides’ rule, a school with 40 students in a grade has one class of 40, but a school with 41 students must split into two classes averaging about 20.5 students. This creates sharp, predictable drops in class size at enrollment multiples of 40.</p>
+<p>These discontinuities give us a source of variation in class size that is essentially unrelated to student ability or family background. The authors use Maimonides’ rule as the basis for a <strong>regression discontinuity design (RDD)</strong> — an approach pioneered by Campbell (1969) — to estimate the causal effect of class size on test scores for Israeli elementary school students tested in 1991.</p>
+<p>This blog post replicates the key findings for <strong>4th graders</strong> from the paper: Figure I panel b, Table II columns 7 and 10 (the naive OLS baseline), and Table III Panel A columns 7, 9, and 11 (the reduced-form RDD estimates). I also replicate the detrended Figure III panel b and explain why the RDD estimates differ from the naive OLS.</p>
+<p>Previewing the results, I find that smaller classes have a statistically significant positive effect on reading scores for 4th graders, although the magnitude is modest. The effects for math are weaker and not statistically significant. These findings are consistent with Angrist and Lavy (1999) and highlight the importance of using credible identification strategies.</p>
+</section>
+<section id="data-and-sample-construction" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-sample-construction">Data and Sample Construction</h2>
+<p>The data come from the 1991 Israeli national testing program, which administered reading and math tests to all 4th and 5th graders in Jewish public schools. The unit of observation is the class. Following the authors’ do files, I apply these cleaning steps: fix scores above 100 (a known coding error), drop classes with fewer than 2 or more than 44 students, restrict to schools with enrollment above 5, limit to Jewish public schools (<code>c_leom == 1</code> and <code>c_pik &lt; 3</code>), and set test scores to missing when no students in the class took a given test. The predicted class size from Maimonides’ rule is <span class="math inline">\(f_{sc} = e_s / [\text{int}((e_s - 1)/40) + 1]\)</span>, where <span class="math inline">\(e_s\)</span> is September enrollment.</p>
+<div id="0e346151" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Load and clean data ──</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df4_raw, _ <span class="op">=</span> pyreadstat.read_dta(<span class="st">'final4.dta'</span>, encoding<span class="op">=</span><span class="st">'latin1'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_data(df):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Apply the same sample restrictions as the original Stata do files."""</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.copy()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fix scores coded above 100</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">'avgverb'</span>] <span class="op">&gt;</span> <span class="dv">100</span>, <span class="st">'avgverb'</span>] <span class="op">-=</span> <span class="dv">100</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">'avgmath'</span>] <span class="op">&gt;</span> <span class="dv">100</span>, <span class="st">'avgmath'</span>] <span class="op">-=</span> <span class="dv">100</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Maimonides' rule predicted class size</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'func1'</span>] <span class="op">=</span> df[<span class="st">'c_size'</span>] <span class="op">/</span> (np.floor((df[<span class="st">'c_size'</span>] <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">40</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set scores to missing when nobody took the test</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">'verbsize'</span>] <span class="op">==</span> <span class="dv">0</span>, [<span class="st">'avgverb'</span>, <span class="st">'passverb'</span>]] <span class="op">=</span> np.nan</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">'mathsize'</span>] <span class="op">==</span> <span class="dv">0</span>, [<span class="st">'avgmath'</span>, <span class="st">'passmath'</span>]] <span class="op">=</span> np.nan</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample restrictions</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[(df[<span class="st">'classize'</span>] <span class="op">&gt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">'classize'</span>] <span class="op">&lt;</span> <span class="dv">45</span>) <span class="op">&amp;</span> (df[<span class="st">'c_size'</span>] <span class="op">&gt;</span> <span class="dv">5</span>)]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[(df[<span class="st">'c_leom'</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">'c_pik'</span>] <span class="op">&lt;</span> <span class="dv">3</span>)]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> clean_data(df4_raw)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After cleaning: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> classes, "</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>df[<span class="st">'avgverb'</span>]<span class="sc">.</span>notna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> with reading scores, "</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>df[<span class="st">'avgmath'</span>]<span class="sc">.</span>notna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> with math scores"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean class size: </span><span class="sc">{</span>df[<span class="st">'classize'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">  |  "</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"Mean enrollment: </span><span class="sc">{</span>df[<span class="st">'c_size'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">  |  "</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"Mean % disadvantaged: </span><span class="sc">{</span>df[<span class="st">'tipuach'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>After cleaning: 2053 classes, 2049 with reading scores, 2049 with math scores
+Mean class size: 30.3  |  Mean enrollment: 78.3  |  Mean % disadvantaged: 13.8</code></pre>
+</div>
+</div>
+</section>
+<section id="replication-of-figure-i-panel-b-class-size-by-enrollment" class="level2">
+<h2 class="anchored" data-anchor-id="replication-of-figure-i-panel-b-class-size-by-enrollment">Replication of Figure I (Panel b): Class Size by Enrollment</h2>
+<p>The key insight behind the identification strategy is visible in this figure. The dashed line shows the class size <strong>predicted</strong> by Maimonides’ rule — a sawtooth function that jumps down at enrollment multiples of 40. The solid line shows <strong>actual</strong> average class size at each enrollment level.</p>
+<p>Actual class sizes track the rule closely but never quite reach 40 before the first discontinuity, because some schools add extra classes before hitting the cap (e.g., when they receive supplementary funding based on their disadvantaged-student index). Nevertheless, the sharp drops at multiples of 40 are clearly visible and drive the identification strategy.</p>
+<div id="cell-fig-1b" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">5.5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Maimonides' rule prediction</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>enr_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">221</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mai_vals <span class="op">=</span> [e <span class="op">/</span> (<span class="bu">int</span>((e <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">40</span>) <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> e <span class="kw">in</span> enr_range]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="bu">list</span>(enr_range), mai_vals, <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"Maimonides' Rule"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Actual average class size by enrollment</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>avg_cs <span class="op">=</span> df.groupby(<span class="st">'c_size'</span>)[<span class="st">'classize'</span>].mean()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.plot(avg_cs.index, avg_cs.values, <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">'Actual class size'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Enrollment count'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Class size'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'b. Fourth Grade'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">220</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">5</span>, <span class="dv">45</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> [<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>]:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    ax.axhline(y<span class="op">=</span>y, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="fl">0.4</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-1b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-1b-output-1.png" width="950" height="518" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Figure I(b): Class Size in 1991 by Initial Enrollment Count (4th Grade). Dashed line shows Maimonides’ Rule prediction; solid line shows actual average class size.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="replication-of-table-ii-ols-estimates-columns-7-10" class="level2">
+<h2 class="anchored" data-anchor-id="replication-of-table-ii-ols-estimates-columns-7-10">Replication of Table II: OLS Estimates (Columns 7 &amp; 10)</h2>
+<p>Table II presents naive OLS regressions of test scores on class size. Without controls, larger classes are <strong>positively</strong> associated with higher scores — a counterintuitive result that reflects <strong>selection bias</strong>. Larger schools in Israel tend to be in more affluent areas, so larger classes mechanically correlate with better outcomes.</p>
+<p>Adding the <strong>percent disadvantaged (PD)</strong> index flips the sign for reading and shrinks the math coefficient toward zero. But even the controlled OLS estimates are unlikely to be causal — within-school sorting (e.g., principals placing struggling students in smaller classes) remains a source of bias.</p>
+<div class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ols_cluster(y, X, clusters):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""OLS with cluster-robust (sandwich) standard errors."""</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> y.notna() <span class="op">&amp;</span> X.notna().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&amp;</span> clusters.notna()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    y_v <span class="op">=</span> y[mask].values</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    X_v <span class="op">=</span> np.column_stack([np.ones(mask.<span class="bu">sum</span>()), X[mask].values])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    cl <span class="op">=</span> clusters[mask].values</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    n, k <span class="op">=</span> X_v.shape</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.linalg.lstsq(X_v, y_v, rcond<span class="op">=</span><span class="va">None</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    resid <span class="op">=</span> y_v <span class="op">-</span> X_v <span class="op">@</span> beta</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    sigma2 <span class="op">=</span> np.<span class="bu">sum</span>(resid<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n <span class="op">-</span> k)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> np.sqrt(sigma2)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    r2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.<span class="bu">sum</span>(resid<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> np.<span class="bu">sum</span>((y_v <span class="op">-</span> y_v.mean())<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    XtX_inv <span class="op">=</span> np.linalg.inv(X_v.T <span class="op">@</span> X_v)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    unique_cl <span class="op">=</span> np.unique(cl)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    meat <span class="op">=</span> np.zeros((k, k))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> c <span class="kw">in</span> unique_cl:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> cl <span class="op">==</span> c</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        score <span class="op">=</span> X_v[idx].T <span class="op">@</span> resid[idx]</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        meat <span class="op">+=</span> np.outer(score, score)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    adj <span class="op">=</span> <span class="bu">len</span>(unique_cl) <span class="op">/</span> (<span class="bu">len</span>(unique_cl) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> (n <span class="op">-</span> k)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    se <span class="op">=</span> np.sqrt(np.diag(adj <span class="op">*</span> XtX_inv <span class="op">@</span> meat <span class="op">@</span> XtX_inv))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">'beta'</span>: beta, <span class="st">'se'</span>: se, <span class="st">'r2'</span>: r2, <span class="st">'rmse'</span>: rmse, <span class="st">'n'</span>: n}</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Run OLS regressions ──</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>dfc <span class="op">=</span> df[df[<span class="st">'avgverb'</span>].notna()].copy()</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>specs <span class="op">=</span> {</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Reading (7)'</span>:  (<span class="st">'avgverb'</span>, [<span class="st">'classize'</span>]),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Reading (8)'</span>:  (<span class="st">'avgverb'</span>, [<span class="st">'classize'</span>, <span class="st">'tipuach'</span>]),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Reading (9)'</span>:  (<span class="st">'avgverb'</span>, [<span class="st">'classize'</span>, <span class="st">'tipuach'</span>, <span class="st">'c_size'</span>]),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Math (10)'</span>:    (<span class="st">'avgmath'</span>, [<span class="st">'classize'</span>]),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Math (11)'</span>:    (<span class="st">'avgmath'</span>, [<span class="st">'classize'</span>, <span class="st">'tipuach'</span>]),</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Math (12)'</span>:    (<span class="st">'avgmath'</span>, [<span class="st">'classize'</span>, <span class="st">'tipuach'</span>, <span class="st">'c_size'</span>]),</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>ols_res <span class="op">=</span> {k: ols_cluster(dfc[v[<span class="dv">0</span>]], dfc[v[<span class="dv">1</span>]], dfc[<span class="st">'schlcode'</span>]) <span class="cf">for</span> k, v <span class="kw">in</span> specs.items()}</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Build markdown table ──</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fv(val, se):</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>val<span class="sc">:.3f}</span><span class="ss"> (</span><span class="sc">{</span>se<span class="sc">:.3f}</span><span class="ss">)"</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> <span class="bu">list</span>(specs.keys())</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> []</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>lines.append(<span class="st">"| | "</span> <span class="op">+</span> <span class="st">" | "</span>.join(cols) <span class="op">+</span> <span class="st">" |"</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>lines.append(<span class="st">"|---"</span> <span class="op">+</span> <span class="st">"|---"</span> <span class="op">*</span> <span class="bu">len</span>(cols) <span class="op">+</span> <span class="st">"|"</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Row: Class size (index 1 in beta)</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Class size |"</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols:</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> ols_res[c]</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>fv(r[<span class="st">'beta'</span>][<span class="dv">1</span>], r[<span class="st">'se'</span>][<span class="dv">1</span>])<span class="sc">}</span><span class="ss"> |"</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>lines.append(row)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Row: PD (index 2)</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Pct. disadvantaged |"</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols:</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> ols_res[c]</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>fv(r[<span class="st">'beta'</span>][<span class="dv">2</span>], r[<span class="st">'se'</span>][<span class="dv">2</span>])<span class="sc">}</span><span class="ss"> |"</span> <span class="cf">if</span> <span class="bu">len</span>(r[<span class="st">'beta'</span>]) <span class="op">&gt;</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">" — |"</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>lines.append(row)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Row: Enrollment (index 3)</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Enrollment |"</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols:</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> ols_res[c]</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>fv(r[<span class="st">'beta'</span>][<span class="dv">3</span>], r[<span class="st">'se'</span>][<span class="dv">3</span>])<span class="sc">}</span><span class="ss"> |"</span> <span class="cf">if</span> <span class="bu">len</span>(r[<span class="st">'beta'</span>]) <span class="op">&gt;</span> <span class="dv">3</span> <span class="cf">else</span> <span class="st">" — |"</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>lines.append(row)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Row: Root MSE</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Root MSE |"</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols:</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>ols_res[c][<span class="st">'rmse'</span>]<span class="sc">:.2f}</span><span class="ss"> |"</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>lines.append(row)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Row: R²</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| R² |"</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols:</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>ols_res[c][<span class="st">'r2'</span>]<span class="sc">:.3f}</span><span class="ss"> |"</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>lines.append(row)</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(lines)))</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">N = </span><span class="sc">{</span>ols_res[<span class="st">'Reading (7)'</span>][<span class="st">'n'</span>]<span class="sc">}</span><span class="ss">. "</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"Mean reading: </span><span class="sc">{</span>dfc[<span class="st">'avgverb'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> (s.d. </span><span class="sc">{</span>dfc[<span class="st">'avgverb'</span>]<span class="sc">.</span>std()<span class="sc">:.1f}</span><span class="ss">). "</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"Mean math: </span><span class="sc">{</span>dfc[<span class="st">'avgmath'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> (s.d. </span><span class="sc">{</span>dfc[<span class="st">'avgmath'</span>]<span class="sc">.</span>std()<span class="sc">:.1f}</span><span class="ss">)."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+N = 2049. Mean reading: 72.5 (s.d. 8.0). Mean math: 68.9 (s.d. 8.8).</code></pre>
+</div>
+<div id="tbl-2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Table II (Replication): OLS Estimates for 1991, 4th Graders. Standard errors in parentheses, corrected for within-school correlation.
+</figcaption>
+<div aria-describedby="tbl-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Reading (7)</th>
+<th>Reading (8)</th>
+<th>Reading (9)</th>
+<th>Math (10)</th>
+<th>Math (11)</th>
+<th>Math (12)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Class size</td>
+<td>0.141 (0.035)</td>
+<td>-0.053 (0.028)</td>
+<td>-0.040 (0.032)</td>
+<td>0.221 (0.039)</td>
+<td>0.055 (0.036)</td>
+<td>0.009 (0.040)</td>
+</tr>
+<tr class="even">
+<td>Pct. disadvantaged</td>
+<td>—</td>
+<td>-0.339 (0.015)</td>
+<td>-0.341 (0.016)</td>
+<td>—</td>
+<td>-0.289 (0.017)</td>
+<td>-0.281 (0.017)</td>
+</tr>
+<tr class="odd">
+<td>Enrollment</td>
+<td>—</td>
+<td>—</td>
+<td>-0.004 (0.006)</td>
+<td>—</td>
+<td>—</td>
+<td>0.014 (0.007)</td>
+</tr>
+<tr class="even">
+<td>Root MSE</td>
+<td>7.94</td>
+<td>6.65</td>
+<td>6.65</td>
+<td>8.66</td>
+<td>7.82</td>
+<td>7.81</td>
+</tr>
+<tr class="odd">
+<td>R²</td>
+<td>0.013</td>
+<td>0.309</td>
+<td>0.309</td>
+<td>0.025</td>
+<td>0.204</td>
+<td>0.207</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>My point estimates match the paper exactly. For instance, the reading-on-classize coefficient with no controls is <strong>0.141</strong> (paper: 0.141), and with PD it becomes <strong>−0.053</strong> (paper: −0.053). Standard errors are close but not identical because the paper uses a Moulton (1986) correction rather than the standard cluster-robust sandwich, and my implementation of clustering differs slightly.</p>
+</section>
+<section id="replication-of-table-iii-panel-a-reduced-form-estimates-columns-7-9-11" class="level2">
+<h2 class="anchored" data-anchor-id="replication-of-table-iii-panel-a-reduced-form-estimates-columns-7-9-11">Replication of Table III (Panel A): Reduced-Form Estimates (Columns 7, 9, 11)</h2>
+<p>Table III is the heart of the paper. It reports the <strong>reduced-form</strong> regressions — the direct relationship between Maimonides’ rule (<span class="math inline">\(f_{sc}\)</span>) and outcomes. The logic is:</p>
+<ul>
+<li><strong>First stage</strong> (columns 7–8): Does <span class="math inline">\(f_{sc}\)</span> predict actual class size? → Yes, strongly (coefficient ≈ 0.77).</li>
+<li><strong>Reduced form for reading</strong> (columns 9–10): Does <span class="math inline">\(f_{sc}\)</span> predict reading scores? → Yes, negatively (−0.085).</li>
+<li><strong>Reduced form for math</strong> (columns 11–12): Does <span class="math inline">\(f_{sc}\)</span> predict math scores? → Weakly, not significantly for 4th graders.</li>
+</ul>
+<div class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>specs3 <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CS (7)'</span>:       (<span class="st">'classize'</span>, [<span class="st">'func1'</span>, <span class="st">'tipuach'</span>]),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CS (8)'</span>:       (<span class="st">'classize'</span>, [<span class="st">'func1'</span>, <span class="st">'tipuach'</span>, <span class="st">'c_size'</span>]),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Rdg (9)'</span>:      (<span class="st">'avgverb'</span>, [<span class="st">'func1'</span>, <span class="st">'tipuach'</span>]),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Rdg (10)'</span>:     (<span class="st">'avgverb'</span>, [<span class="st">'func1'</span>, <span class="st">'tipuach'</span>, <span class="st">'c_size'</span>]),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Math (11)'</span>:    (<span class="st">'avgmath'</span>, [<span class="st">'func1'</span>, <span class="st">'tipuach'</span>]),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Math (12)'</span>:    (<span class="st">'avgmath'</span>, [<span class="st">'func1'</span>, <span class="st">'tipuach'</span>, <span class="st">'c_size'</span>]),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>rf_res <span class="op">=</span> {k: ols_cluster(dfc[v[<span class="dv">0</span>]], dfc[v[<span class="dv">1</span>]], dfc[<span class="st">'schlcode'</span>]) <span class="cf">for</span> k, v <span class="kw">in</span> specs3.items()}</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>cols3 <span class="op">=</span> <span class="bu">list</span>(specs3.keys())</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>lines3 <span class="op">=</span> []</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>lines3.append(<span class="st">"| | "</span> <span class="op">+</span> <span class="st">" | "</span>.join(cols3) <span class="op">+</span> <span class="st">" |"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>lines3.append(<span class="st">"|---"</span> <span class="op">+</span> <span class="st">"|---"</span> <span class="op">*</span> <span class="bu">len</span>(cols3) <span class="op">+</span> <span class="st">"|"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># f_sc</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| $f_</span><span class="sc">{sc}</span><span class="st">$ |"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols3:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> rf_res[c]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>fv(r[<span class="st">'beta'</span>][<span class="dv">1</span>], r[<span class="st">'se'</span>][<span class="dv">1</span>])<span class="sc">}</span><span class="ss"> |"</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>lines3.append(row)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># PD</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Pct. disadvantaged |"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols3:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> rf_res[c]</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>fv(r[<span class="st">'beta'</span>][<span class="dv">2</span>], r[<span class="st">'se'</span>][<span class="dv">2</span>])<span class="sc">}</span><span class="ss"> |"</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>lines3.append(row)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Enrollment</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Enrollment |"</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols3:</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> rf_res[c]</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>fv(r[<span class="st">'beta'</span>][<span class="dv">3</span>], r[<span class="st">'se'</span>][<span class="dv">3</span>])<span class="sc">}</span><span class="ss"> |"</span> <span class="cf">if</span> <span class="bu">len</span>(r[<span class="st">'beta'</span>]) <span class="op">&gt;</span> <span class="dv">3</span> <span class="cf">else</span> <span class="st">" — |"</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>lines3.append(row)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| Root MSE |"</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols3:</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>rf_res[c][<span class="st">'rmse'</span>]<span class="sc">:.2f}</span><span class="ss"> |"</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>lines3.append(row)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co"># R²</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="st">"| R² |"</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols3:</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    row <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>rf_res[c][<span class="st">'r2'</span>]<span class="sc">:.3f}</span><span class="ss"> |"</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>lines3.append(row)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(lines3)))</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">N = </span><span class="sc">{</span>rf_res[<span class="st">'Rdg (9)'</span>][<span class="st">'n'</span>]<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+N = 2049.</code></pre>
+</div>
+<div id="tbl-3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Table III Panel A (Replication): Reduced-Form Estimates for 1991, 4th Graders (Full Sample). Standard errors in parentheses, corrected for within-school correlation.
+</figcaption>
+<div aria-describedby="tbl-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>CS (7)</th>
+<th>CS (8)</th>
+<th>Rdg (9)</th>
+<th>Rdg (10)</th>
+<th>Math (11)</th>
+<th>Math (12)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f_{sc}\)</span></td>
+<td>0.772 (0.023)</td>
+<td>0.670 (0.033)</td>
+<td>-0.085 (0.031)</td>
+<td>-0.089 (0.040)</td>
+<td>0.038 (0.040)</td>
+<td>-0.033 (0.050)</td>
+</tr>
+<tr class="even">
+<td>Pct. disadvantaged</td>
+<td>-0.054 (0.009)</td>
+<td>-0.039 (0.009)</td>
+<td>-0.340 (0.015)</td>
+<td>-0.340 (0.016)</td>
+<td>-0.292 (0.017)</td>
+<td>-0.282 (0.017)</td>
+</tr>
+<tr class="odd">
+<td>Enrollment</td>
+<td>—</td>
+<td>0.027 (0.005)</td>
+<td>—</td>
+<td>0.001 (0.007)</td>
+<td>—</td>
+<td>0.019 (0.008)</td>
+</tr>
+<tr class="even">
+<td>Root MSE</td>
+<td>4.20</td>
+<td>4.13</td>
+<td>6.64</td>
+<td>6.64</td>
+<td>7.83</td>
+<td>7.81</td>
+</tr>
+<tr class="odd">
+<td>R²</td>
+<td>0.561</td>
+<td>0.575</td>
+<td>0.311</td>
+<td>0.311</td>
+<td>0.203</td>
+<td>0.207</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Again, the point estimates match the paper precisely. The first-stage coefficient on <span class="math inline">\(f_{sc}\)</span> is <strong>0.772</strong> (paper: 0.772), the reduced-form reading coefficient is <strong>−0.085</strong> (paper: −0.085), and the math coefficient is <strong>0.038</strong> (paper: 0.038).</p>
+</section>
+<section id="something-additional-visualizing-the-mirror-image-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="something-additional-visualizing-the-mirror-image-pattern">Something Additional: Visualizing the Mirror-Image Pattern</h2>
+<p>To complement the tabular results, I replicate <strong>Figure III (panel b)</strong> from the paper. This figure provides the most intuitive visual evidence for the identification strategy. It plots, by enrollment bins of 10, the <strong>residuals</strong> of both average reading scores and predicted class size after partialling out enrollment and the PD index. After detrending, what remains is the up-and-down variation driven by the discontinuities in Maimonides’ rule.</p>
+<div id="cell-fig-3b" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> lstsq</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dfc2 <span class="op">=</span> df[df[<span class="st">'avgverb'</span>].notna()].copy()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>dfc2 <span class="op">=</span> dfc2[(dfc2[<span class="st">'c_size'</span>] <span class="op">&gt;=</span> <span class="dv">5</span>) <span class="op">&amp;</span> (dfc2[<span class="st">'c_size'</span>] <span class="op">&lt;=</span> <span class="dv">195</span>)]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create enrollment bins of width 10</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>dfc2[<span class="st">'bin'</span>] <span class="op">=</span> ((dfc2[<span class="st">'c_size'</span>] <span class="op">-</span> <span class="dv">5</span>) <span class="op">//</span> <span class="dv">10</span>) <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">10</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>dfc2.loc[dfc2[<span class="st">'bin'</span>] <span class="op">&gt;</span> <span class="dv">170</span>, <span class="st">'bin'</span>] <span class="op">=</span> <span class="dv">170</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Detrend: regress on constant + enrollment + PD, take residuals</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>X_dt <span class="op">=</span> np.column_stack([np.ones(<span class="bu">len</span>(dfc2)), dfc2[<span class="st">'c_size'</span>].values, dfc2[<span class="st">'tipuach'</span>].values])</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>beta_v <span class="op">=</span> lstsq(X_dt, dfc2[<span class="st">'avgverb'</span>].values, rcond<span class="op">=</span><span class="va">None</span>)[<span class="dv">0</span>]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>dfc2[<span class="st">'resid_verb'</span>] <span class="op">=</span> dfc2[<span class="st">'avgverb'</span>].values <span class="op">-</span> X_dt <span class="op">@</span> beta_v</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>beta_f <span class="op">=</span> lstsq(X_dt, dfc2[<span class="st">'func1'</span>].values, rcond<span class="op">=</span><span class="va">None</span>)[<span class="dv">0</span>]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>dfc2[<span class="st">'resid_func'</span>] <span class="op">=</span> dfc2[<span class="st">'func1'</span>].values <span class="op">-</span> X_dt <span class="op">@</span> beta_f</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>agg <span class="op">=</span> dfc2.groupby(<span class="st">'bin'</span>).agg(</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    resid_score<span class="op">=</span>(<span class="st">'resid_verb'</span>, <span class="st">'mean'</span>),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    resid_func<span class="op">=</span>(<span class="st">'resid_func'</span>, <span class="st">'mean'</span>),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    count<span class="op">=</span>(<span class="st">'resid_verb'</span>, <span class="st">'count'</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>).dropna()</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>agg <span class="op">=</span> agg[agg[<span class="st">'count'</span>] <span class="op">&gt;=</span> <span class="dv">3</span>]</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>ax1.plot(agg.index, agg[<span class="st">'resid_score'</span>], <span class="st">'k-'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Enrollment count'</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Reading score residual'</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>ax1.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>ax2.plot(agg.index, agg[<span class="st">'resid_func'</span>], <span class="st">'k--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Size-function residual'</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="op">-</span><span class="dv">15</span>, <span class="dv">15</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'b. Fourth Grade (Reading)'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim(<span class="dv">5</span>, <span class="dv">170</span>)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>ax1.text(<span class="dv">95</span>, <span class="op">-</span><span class="fl">3.5</span>, <span class="st">'Average test scores'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>ax2.text(<span class="dv">15</span>, <span class="dv">12</span>, <span class="st">'Predicted class size'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-3b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-3b-output-1.png" width="950" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Figure III(b): Average Reading Scores and Predicted Class Size by Enrollment (4th Grade), Residuals from Regressions on Percent Disadvantaged and Enrollment. The approximate mirror-image pattern provides visual evidence for a causal class-size effect.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The two series are approximate <strong>mirror images</strong>: when predicted class size jumps up (dashed line), reading scores tend to dip (solid line), and vice versa. This up-and-down pattern follows the sawtooth shape of Maimonides’ rule. Because any smooth confounding relationship between enrollment and scores has been removed by the detrending, the remaining jagged variation is very difficult to attribute to anything other than class size.</p>
+</section>
+<section id="comparing-naive-ols-vs.-reduced-form-what-changed" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-naive-ols-vs.-reduced-form-what-changed">Comparing Naive OLS vs.&nbsp;Reduced-Form: What Changed?</h2>
+<p>The contrast between Tables II and III reveals why the identification strategy matters:</p>
+<div class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iv1 <span class="op">=</span> rf_res[<span class="st">'Rdg (9)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>] <span class="op">/</span> rf_res[<span class="st">'CS (7)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>iv2 <span class="op">=</span> rf_res[<span class="st">'Rdg (10)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>] <span class="op">/</span> rf_res[<span class="st">'CS (8)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>lines_c <span class="op">=</span> [</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"| Specification | OLS (Table II) | Reduced-Form (Table III) | Implied IV = RF ÷ FS |"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|---|---|---|---|"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"| + PD only | </span><span class="sc">{</span>fv(ols_res[<span class="st">'Reading (8)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>], ols_res[<span class="st">'Reading (8)'</span>][<span class="st">'se'</span>][<span class="dv">1</span>])<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>fv(rf_res[<span class="st">'Rdg (9)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>], rf_res[<span class="st">'Rdg (9)'</span>][<span class="st">'se'</span>][<span class="dv">1</span>])<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>iv1<span class="sc">:.3f}</span><span class="ss"> |"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"| + PD + enrollment | </span><span class="sc">{</span>fv(ols_res[<span class="st">'Reading (9)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>], ols_res[<span class="st">'Reading (9)'</span>][<span class="st">'se'</span>][<span class="dv">1</span>])<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>fv(rf_res[<span class="st">'Rdg (10)'</span>][<span class="st">'beta'</span>][<span class="dv">1</span>], rf_res[<span class="st">'Rdg (10)'</span>][<span class="st">'se'</span>][<span class="dv">1</span>])<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span>iv2<span class="sc">:.3f}</span><span class="ss"> |"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(lines_c)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-compare" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Comparing OLS vs.&nbsp;Reduced-Form Estimates for 4th Grade Reading
+</figcaption>
+<div aria-describedby="tbl-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+<th>OLS (Table II)</th>
+<th>Reduced-Form (Table III)</th>
+<th>Implied IV = RF ÷ FS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>+ PD only</td>
+<td>-0.053 (0.028)</td>
+<td>-0.085 (0.031)</td>
+<td>-0.110</td>
+</tr>
+<tr class="even">
+<td>+ PD + enrollment</td>
+<td>-0.040 (0.032)</td>
+<td>-0.089 (0.040)</td>
+<td>-0.133</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The OLS estimates of the class-size effect on reading are small and only marginally significant (−0.053 and −0.040). Dividing the reduced-form coefficients on <span class="math inline">\(f_{sc}\)</span> by the first-stage coefficients gives implied IV estimates of about <strong>−0.110</strong> and <strong>−0.133</strong> — roughly 2–3 times larger in magnitude than OLS.</p>
+<p>Why the difference? The OLS estimates suffer from two sources of bias:</p>
+<ol type="1">
+<li><strong>Between-school bias</strong>: Wealthier areas have both larger schools and better-performing students, creating a positive correlation between class size and scores. Controlling for PD partially addresses this.</li>
+<li><strong>Within-school bias</strong>: Principals may assign struggling students to smaller remedial classes, creating a negative correlation between class size and unobserved student ability. This biases OLS estimates <em>toward zero</em> (or even positive).</li>
+</ol>
+<p>The IV/RDD approach eliminates both sources by isolating only the variation in class size generated by Maimonides’ rule — an administrative formula that is unrelated to student characteristics. The result is a cleaner, more negative estimate, consistent with the intuition that smaller classes help students learn.</p>
+<p>For 4th graders, the reading effects are statistically significant but smaller than for 5th graders, and the math effects are not significant. Angrist and Lavy suggest this may reflect <strong>cumulative effects</strong>: students in smaller classes for more years (5th graders) benefit more than those with less exposure (4th graders).</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

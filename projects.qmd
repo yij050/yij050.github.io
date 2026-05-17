@@ -10,6 +10,10 @@ listing:
       title: "Replication of Card & Krueger (1994)"
       description: "Replicating the landmark minimum wage study using difference-in-differences. Finds no evidence that raising the minimum wage reduced fast-food employment."
       categories: [Economics, Diff-in-Diff]
+    - path: projects/hw3-poisson
+      title: "Poisson Regression and Maximum Likelihood Estimation"
+      description: "A case study analyzing whether Blueprinty's software is associated with higher patent counts using Poisson regression and maximum likelihood estimation."
+      categories: [Statistics, Poisson Regression, MLE]
   type: grid
   sort: "date desc"
 page-layout: full

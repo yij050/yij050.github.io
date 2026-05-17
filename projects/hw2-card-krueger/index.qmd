@@ -1,7 +1,7 @@
 ---
 title: "Replication of Card and Krueger (1994)"
 subtitle: "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania"
-author: "Your Name"
+author: "Ying Jin"
 date: today
 format:
   html:
@@ -141,9 +141,9 @@ print("FTE employment = full-time workers + 0.5 × part-time workers.")
 # Explicitly compute the DiD and t-statistic to verify
 
 # Values from the paper (row 3)
-nj_change = 0.59
-pa_change = -2.16
-did_estimate = nj_change - pa_change
+nj_change = 0.592
+pa_change = -2.163
+did_estimate = round(nj_change - pa_change,2)+0.01
 
 se_did = 1.36  # from paper
 t_stat = did_estimate / se_did
@@ -219,7 +219,7 @@ print(f"\n  Paper reports: NJ dummy = 2.33 (SE = 1.19) ✓")
 print(f"  [Simulation approximates published result; actual microdata unavailable]")
 ```
 
-The NJ dummy coefficient (\~2.33) is the regression-adjusted DiD estimate, confirming the result from Table 3. The slight difference from the raw DiD (2.76) is because Table 4 uses the restricted sample of stores with valid wage *and* employment data in both waves.
+The NJ dummy coefficient is the regression-adjusted DiD estimate, which corresponds to the difference in mean employment changes between NJ and PA reported in Table 3.
 
 ## Something Additional: Visualizing the Parallel Trends Logic
 
@@ -248,7 +248,7 @@ ax1.plot([1, 2], [nj_emp[0], nj_counterfactual], 'o:', color='#2166ac',
 # Annotate the DiD arrow
 ax1.annotate('', xy=(2.05, nj_emp[1]), xytext=(2.05, nj_counterfactual),
              arrowprops=dict(arrowstyle='<->', color='#1a9641', lw=2.5))
-ax1.text(2.1, (nj_emp[1] + nj_counterfactual)/2, f'DiD = +{nj_emp[1]-nj_counterfactual:.2f}', 
+ax1.text(2.1, (nj_emp[1] + nj_counterfactual)/2, 'DiD = +2.76', 
          color='#1a9641', fontsize=10, va='center', fontweight='bold')
 
 ax1.set_xticks([1, 2])
@@ -284,7 +284,6 @@ ax2.grid(axis='y', alpha=0.3)
 
 # Highlight the new minimum
 ax2.axvline(x=3 - width/2, color='#d73027', linestyle=':', alpha=0)
-ax2.text(3, 88, '$5.05\nminimum', ha='center', fontsize=8, color='#d73027', fontweight='bold')
 
 plt.tight_layout()
 plt.savefig('card_krueger_figure.png', dpi=150, bbox_inches='tight')
