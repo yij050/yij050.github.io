@@ -265,6 +265,27 @@ se_hat = np.sqrt(np.diag(hessian))
 
 The hand-coded optimizer is sensitive to scaling because age squared is numerically large. For the final estimates, I rely on the GLM fit from \`statsmodels\`, which implements Poisson regression more robustly.
 
+### Comparison: optim vs GLM
+
+```{python}
+import statsmodels.api as sm
+
+glm_model = sm.GLM(Y_np, X_np, family=sm.families.Poisson())
+glm_res   = glm_model.fit()
+
+# The BFGS inverse Hessian approximation fails when covariates are poorly scaled
+# (age_sq takes values in the thousands). We report GLM standard errors instead.
+results_optim = pd.DataFrame({
+    'MLE (optim)': np.round(beta_hat, 4),
+    'MLE (GLM)':   np.round(glm_res.params, 4),
+    'SE (GLM)':    np.round(glm_res.bse, 4)
+}, index=X_mat.columns)
+
+results_optim
+```
+
+The coefficient estimates from BFGS differ from GLM because \`age_sq\` is numerically large, causing the BFGS Hessian approximation to fail (all SEs collapse to 1.0). For reliable standard errors, we rely on \`statsmodels\`, which computes the exact Fisher information matrix.
+
 ### Formatted Results Table
 
 ```{python}
@@ -349,6 +370,6 @@ Holding each firm's age and region fixed at their observed values, switching eve
 
 Most predicted effects are concentrated between roughly 0.7 and 0.9 additional patents, suggesting that the estimated software benefit is fairly consistent across firms.
 
-## What the analysis does — and does not — establish
+### What the analysis does — and does not — establish
 
 This estimate is consistent with Blueprinty’s marketing claim that their software helps firms secure more patents. However, this is an **observational study**, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty’s software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate.
