@@ -230,6 +230,7 @@ print("Shape:", X_np.shape)
 We include **age squared** to capture the likely non-linear relationship between firm maturity and patenting activity — very young and very old firms may behave differently from those in the middle of their lifecycle. We drop **Midwest** as the reference region to avoid perfect collinearity: with an intercept in the model, including indicator variables for all regions would make the columns linearly dependent.
 
 ### Verification with `statsmodels`
+
 ```{python}
 #| echo: false
 import statsmodels.api as sm
@@ -239,6 +240,7 @@ glm_res   = glm_model.fit()
 ```
 
 ### MLE via `scipy.optimize` + Hessian-Based Standard Errors
+
 ```{python}
 #| echo: false
 #| warning: false
@@ -260,7 +262,6 @@ beta_hat = res.x
 hessian = res.hess_inv
 se_hat = np.sqrt(np.diag(hessian))
 ```
-
 
 The hand-coded optimizer is sensitive to scaling because age squared is numerically large. For the final estimates, I rely on the GLM fit from \`statsmodels\`, which implements Poisson regression more robustly.
 
@@ -344,10 +345,10 @@ plt.tight_layout()
 plt.show()
 ```
 
-Holding each firm's age and region fixed at their observed values, switching every firm from non-customer to customer status is predicted to increase patent awards by an average of roughly **`{python} f"{ate:.2f}"`** patents over five years.
-
-**What the analysis does — and does not — establish.** This estimate is consistent with Blueprinty's marketing claim that their software helps firms secure more patents. However, this is an **observational study**, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty's software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate. Holding each firm's age and region fixed at their observed values, switching every firm from non-customer to customer status is predicted to increase patent awards by an average of roughly **0.79** patents over five years.
+Holding each firm's age and region fixed at their observed values, switching every firm from non-customer to customer status is predicted to increase patent awards by an average of roughly 0.79 patents over five years.
 
 Most predicted effects are concentrated between roughly 0.7 and 0.9 additional patents, suggesting that the estimated software benefit is fairly consistent across firms.
 
-**What the analysis does — and does not — establish.** This estimate is consistent with Blueprinty's marketing claim that their software helps firms secure more patents. However, this is an **observational study**, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty's software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate.
+## What the analysis does — and does not — establish
+
+This estimate is consistent with Blueprinty’s marketing claim that their software helps firms secure more patents. However, this is an **observational study**, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty’s software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate.

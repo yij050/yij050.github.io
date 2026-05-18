@@ -234,7 +234,7 @@ window.Quarto = {
 </section>
 <section id="exploring-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the Data</h2>
-<div id="98dd2469" class="cell" data-execution_count="1">
+<div id="43803c9c" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -293,7 +293,7 @@ window.Quarto = {
 </div>
 <section id="patent-counts-by-customer-status" class="level3">
 <h3 class="anchored" data-anchor-id="patent-counts-by-customer-status">Patent Counts by Customer Status</h3>
-<div id="652d283d" class="cell" data-execution_count="2">
+<div id="3b9d12c3" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -310,7 +310,7 @@ Mean patents — Customers:     4.133</code></pre>
 </section>
 <section id="regional-distribution-by-customer-status" class="level3">
 <h3 class="anchored" data-anchor-id="regional-distribution-by-customer-status">Regional Distribution by Customer Status</h3>
-<div id="c8b91799" class="cell" data-execution_count="3">
+<div id="486d2380" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -323,7 +323,7 @@ Mean patents — Customers:     4.133</code></pre>
 </section>
 <section id="firm-age-by-customer-status" class="level3">
 <h3 class="anchored" data-anchor-id="firm-age-by-customer-status">Firm Age by Customer Status</h3>
-<div id="1ec5e528" class="cell" data-execution_count="4">
+<div id="bc32f585" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -357,7 +357,7 @@ L(\lambda \mid Y_1, \ldots, Y_n) = \prod_{i=1}^{n} \frac{e^{-\lambda} \lambda^{Y
 </section>
 <section id="coding-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="coding-the-log-likelihood">Coding the Log-Likelihood</h3>
-<div id="d6764971" class="cell" data-execution_count="5">
+<div id="cebc2800" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln   <span class="co"># log(Y!) = gammaln(Y+1), numerically stable</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_loglikelihood(lam, Y):</span>
@@ -371,7 +371,7 @@ L(\lambda \mid Y_1, \ldots, Y_n) = \prod_{i=1}^{n} \frac{e^{-\lambda} \lambda^{Y
 </section>
 <section id="plotting-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-the-log-likelihood">Plotting the Log-Likelihood</h3>
-<div id="b08c206b" class="cell" data-execution_count="6">
+<div id="51efcf97" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -384,7 +384,7 @@ L(\lambda \mid Y_1, \ldots, Y_n) = \prod_{i=1}^{n} \frac{e^{-\lambda} \lambda^{Y
 </section>
 <section id="numerical-mle-with-scipy.optimize" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-mle-with-scipy.optimize">Numerical MLE with <code>scipy.optimize</code></h3>
-<div id="ed0e5f49" class="cell" data-execution_count="7">
+<div id="5ee4b551" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>Numerical MLE:  λ̂ = 3.68467
 Sample mean:    Ȳ  = 3.68467</code></pre>
@@ -402,7 +402,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 <p>We use the exponential link for a critical reason: <span class="math inline">\(X_i'\beta\)</span> is a linear combination of covariates and can take any real value, but <span class="math inline">\(\lambda_i\)</span> must be strictly positive. The exponential function maps <span class="math inline">\(\mathbb{R} \to (0, \infty)\)</span>, guaranteeing valid Poisson rates.</p>
 <section id="log-likelihood-for-poisson-regression" class="level3">
 <h3 class="anchored" data-anchor-id="log-likelihood-for-poisson-regression">Log-Likelihood for Poisson Regression</h3>
-<div id="3dda5974" class="cell" data-execution_count="8">
+<div id="94395ac1" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood for Poisson regression: lambda_i = exp(X_i @ beta)."""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    lam <span class="op">=</span> np.exp(X <span class="op">@</span> beta)</span>
@@ -411,7 +411,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="building-the-design-matrix-x" class="level3">
 <h3 class="anchored" data-anchor-id="building-the-design-matrix-x">Building the Design Matrix <span class="math inline">\(X\)</span></h3>
-<div id="0bcaa7a0" class="cell" data-execution_count="9">
+<div id="208bf0ee" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One-hot encode region, drop 'Midwest' as the reference category</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(df, columns<span class="op">=</span>[<span class="st">'region'</span>], drop_first<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>region_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> X.columns <span class="cf">if</span> c.startswith(<span class="st">'region_'</span>)]</span>
@@ -443,7 +443,7 @@ Shape: (1500, 8)</code></pre>
 </section>
 <section id="formatted-results-table" class="level3">
 <h3 class="anchored" data-anchor-id="formatted-results-table">Formatted Results Table</h3>
-<div id="f969ddef" class="cell" data-execution_count="12">
+<div id="2a17fcf9" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
@@ -533,12 +533,12 @@ Shape: (1500, 8)</code></pre>
 <section id="the-effect-of-blueprintys-software" class="level2">
 <h2 class="anchored" data-anchor-id="the-effect-of-blueprintys-software">The Effect of Blueprinty’s Software</h2>
 <p>Because Poisson regression is multiplicative (effects enter through <span class="math inline">\(\exp\)</span>), the <code>iscustomer</code> coefficient does not directly tell us “how many more patents a customer gets.” To get an interpretable estimate, we use the <strong>counterfactual prediction</strong> approach.</p>
-<div id="e8cf6f12" class="cell" data-execution_count="13">
+<div id="c121335f" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <pre><code>Average Treatment Effect: 0.7928 additional patents over 5 years</code></pre>
 </div>
 </div>
-<div id="428bb537" class="cell" data-execution_count="14">
+<div id="e2cac96e" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -547,10 +547,12 @@ Shape: (1500, 8)</code></pre>
 </div>
 </div>
 </div>
-<p>Holding each firm’s age and region fixed at their observed values, switching every firm from non-customer to customer status is predicted to increase patent awards by an average of roughly <strong>0.79</strong> patents over five years.</p>
-<p><strong>What the analysis does — and does not — establish.</strong> This estimate is consistent with Blueprinty’s marketing claim that their software helps firms secure more patents. However, this is an <strong>observational study</strong>, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty’s software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&amp;D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate. Holding each firm’s age and region fixed at their observed values, switching every firm from non-customer to customer status is predicted to increase patent awards by an average of roughly <strong>0.79</strong> patents over five years.</p>
+<p>Holding each firm’s age and region fixed at their observed values, switching every firm from non-customer to customer status is predicted to increase patent awards by an average of roughly 0.79 patents over five years.</p>
 <p>Most predicted effects are concentrated between roughly 0.7 and 0.9 additional patents, suggesting that the estimated software benefit is fairly consistent across firms.</p>
-<p><strong>What the analysis does — and does not — establish.</strong> This estimate is consistent with Blueprinty’s marketing claim that their software helps firms secure more patents. However, this is an <strong>observational study</strong>, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty’s software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&amp;D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate.</p>
+</section>
+<section id="what-the-analysis-does-and-does-not-establish" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-analysis-does-and-does-not-establish">What the analysis does — and does not — establish</h2>
+<p>This estimate is consistent with Blueprinty’s marketing claim that their software helps firms secure more patents. However, this is an <strong>observational study</strong>, not a randomized controlled trial. Even after controlling for age and region, firms that adopt Blueprinty’s software may differ from non-adopters in unobserved ways — for example, they may have stronger internal R&amp;D teams or more dedicated legal support. These unobserved factors could partly or fully explain the higher patent counts. The estimated effect should therefore be interpreted as suggestive evidence, not a causal estimate.</p>
 
 
 </section>
