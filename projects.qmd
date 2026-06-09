@@ -14,6 +14,10 @@ listing:
       title: "Poisson Regression and Maximum Likelihood Estimation"
       description: "A case study analyzing whether Blueprinty's software is associated with higher patent counts using Poisson regression and maximum likelihood estimation."
       categories: [Statistics, Poisson Regression, MLE]
+    - path: projects/hw5_final
+      title: "Key Drivers Analysis: Customer Satisfaction"
+      description: "Replicates slide 75 of the Key Drivers Analysis lecture using Pearson correlations, standardized regression coefficients, Drop-One importance, Johnson's relative weights, Shapley values, and Random Forest Gini importance."
+      categories: [Marketing Analytics, Key Drivers Analysis, Random Forest]
   type: grid
   sort: "date desc"
 page-layout: full
