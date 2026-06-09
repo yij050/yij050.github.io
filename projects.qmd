@@ -14,6 +14,10 @@ listing:
       title: "Poisson Regression and Maximum Likelihood Estimation"
       description: "A case study analyzing whether Blueprinty's software is associated with higher patent counts using Poisson regression and maximum likelihood estimation."
       categories: [Statistics, Poisson Regression, MLE]
+    - path: projects/hw4-maxdiff analysis
+      title: "MaxDiff Analysis of MSBA Course Preferences"
+      description: "A discrete-choice analysis of MSBA students’ preferences over core courses using Counts Analysis, Multinomial Logit (MNL), and Bayesian MCMC estimation."
+      categories: [Statistics, Bayesian Statistics, MNL, MaxDiff]
     - path: projects/hw5_final
       title: "Key Drivers Analysis: Customer Satisfaction"
       description: "Replicates slide 75 of the Key Drivers Analysis lecture using Pearson correlations, standardized regression coefficients, Drop-One importance, Johnson's relative weights, Shapley values, and Random Forest Gini importance."
