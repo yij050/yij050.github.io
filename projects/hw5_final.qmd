@@ -1,0 +1,231 @@
+---
+title: "Key Drivers Analysis: Customer Satisfaction"
+author: "Ying Jin"
+date: today
+format: html
+---
+
+## Overview
+
+This analysis replicates the feature importance methodology from slide 75 of the Key Drivers presentation. We examine what factors drive customer satisfaction using six different statistical approaches.
+
+```{python}
+#| echo: false
+import pandas as pd
+import numpy as np
+from scipy.stats import pearsonr
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+import warnings
+warnings.filterwarnings('ignore')
+
+# Load data
+df = pd.read_csv('data_for_drivers_analysis.csv')
+
+# Setup
+target = 'satisfaction'
+features = [col for col in df.columns if col not in ['brand', 'id', target]]
+X = df[features].copy()
+y = df[target].copy()
+
+# Standardize
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+X_scaled_df = pd.DataFrame(X_scaled, columns=features)
+```
+
+## Data Summary
+
+```{python}
+#| echo: false
+print(f"Sample size: {len(df)} observations")
+print(f"Features: {len(features)}")
+print(f"Target variable: {target}")
+print(f"\nFeature variables:")
+for i, feat in enumerate(features, 1):
+    print(f"  {i}. {feat}")
+print(f"\nSatisfaction score - Mean: {y.mean():.2f}, SD: {y.std():.2f}, Range: [{y.min()}, {y.max()}]")
+```
+
+## Results: Feature Importance Metrics
+
+### 1. Pearson Correlation
+
+```{python}
+#| echo: false
+pearson_corr = []
+for feature in features:
+    corr, _ = pearsonr(X[feature], y)
+    pearson_corr.append(corr)
+
+pearson_corr = np.array(pearson_corr)
+print("Pearson Correlation with satisfaction:")
+print(f"  Range: [{pearson_corr.min():.3f}, {pearson_corr.max():.3f}]")
+print(f"  Mean: {pearson_corr.mean():.3f}")
+```
+
+### 2. Standardized Multiple Regression Coefficients
+
+```{python}
+#| echo: false
+lr_model = LinearRegression()
+lr_model.fit(X_scaled_df, y)
+r2_full = r2_score(y, lr_model.predict(X_scaled_df))
+
+print(f"Linear Regression Model Summary:")
+print(f"  R² = {r2_full:.4f}")
+print(f"  Intercept = {lr_model.intercept_:.4f}")
+```
+
+### 3. Drop-One (Usefulness)
+
+```{python}
+#| echo: false
+drop_one_importance = []
+for feature in features:
+    X_temp = X_scaled_df.drop(columns=[feature])
+    lr_temp = LinearRegression()
+    lr_temp.fit(X_temp, y)
+    r2_reduced = r2_score(y, lr_temp.predict(X_temp))
+    drop_one = r2_full - r2_reduced
+    drop_one_importance.append(drop_one)
+
+drop_one_importance = np.array(drop_one_importance)
+print("Drop-One Metric (R² decrease when feature removed):")
+print(f"  Range: [{drop_one_importance.min():.4f}, {drop_one_importance.max():.4f}]")
+```
+
+### 4. Johnson's Relative Weights
+
+```{python}
+#| echo: false
+std_coef = lr_model.coef_
+raw_weights = np.abs(pearson_corr * std_coef)
+johnson_weights = (raw_weights / raw_weights.sum()) * r2_full * 100
+
+print("Johnson's Epsilon (relative contribution to R²):")
+print(f"  Sum of weights: {johnson_weights.sum():.2f}% (equals R² × 100)")
+```
+
+### 5. Shapley Values
+
+```{python}
+#| echo: false
+try:
+    import shap
+    explainer = shap.LinearExplainer(lr_model, X_scaled_df)
+    shap_values = explainer.shap_values(X_scaled_df)
+    mean_shap = np.abs(shap_values).mean(axis=0)
+    shapley_importance = (mean_shap / mean_shap.sum()) * r2_full * 100
+    print("Shapley Values (cooperative game theory approach):")
+    print(f"  Sum: {shapley_importance.sum():.2f}% (normalized to R²)")
+except:
+    # Fallback
+    from sklearn.inspection import permutation_importance
+    perm_importance = permutation_importance(lr_model, X_scaled_df, y, n_repeats=10, random_state=42)
+    shapley_importance = (perm_importance.importances_mean / perm_importance.importances_mean.sum()) * r2_full * 100
+    print("Shapley Values (approximated via permutation importance)")
+```
+
+### 6. Random Forest: Mean Decrease in Gini
+
+```{python}
+#| echo: false
+rf_model = RandomForestRegressor(n_estimators=100, random_state=42, max_depth=10)
+rf_model.fit(X, y)
+rf_importance = rf_model.feature_importances_ * 100
+
+rf_r2 = r2_score(y, rf_model.predict(X))
+print(f"Random Forest Model:")
+print(f"  R² = {rf_r2:.4f}")
+print(f"  Feature importance metrics sum to: {rf_importance.sum():.2f}%")
+```
+
+## Complete Summary Table
+
+```{python}
+#| echo: false
+# Create comprehensive table
+summary_table = pd.DataFrame({
+    'Perception': features,
+    'Pearson Corr': np.round(pearson_corr, 3),
+    'Std Reg Coef': np.round(std_coef, 3),
+    'Drop-One': np.round(drop_one_importance, 4),
+    "Johnson's Eps": np.round(johnson_weights, 2),
+    'Shapley Val': np.round(shapley_importance, 2),
+    'RF Gini': np.round(rf_importance, 2)
+})
+
+# Sort by Shapley Values (descending)
+summary_table = summary_table.sort_values('Shapley Val', ascending=False).reset_index(drop=True)
+
+print("\nFEATURE IMPORTANCE SUMMARY TABLE")
+print("(Sorted by Shapley Values)")
+print("="*110)
+print(summary_table.to_string(index=False))
+print("="*110)
+```
+
+## Key Findings
+
+```{python}
+#| echo: false
+# Identify top drivers
+top_3_shapley = summary_table.nlargest(3, 'Shapley Val')['Perception'].tolist()
+top_3_rf = summary_table.nlargest(3, 'RF Gini')['Perception'].tolist()
+
+print("\nTop 3 Drivers (Shapley Values):")
+for i, feat in enumerate(top_3_shapley, 1):
+    val = summary_table[summary_table['Perception'] == feat]['Shapley Val'].values[0]
+    print(f"  {i}. {feat} ({val:.2f}%)")
+
+print("\nTop 3 Drivers (Random Forest):")
+for i, feat in enumerate(top_3_rf, 1):
+    val = summary_table[summary_table['Perception'] == feat]['RF Gini'].values[0]
+    print(f"  {i}. {feat} ({val:.2f}%)")
+
+print(f"\n\nModel Comparison:")
+print(f"  Linear Regression R²: {r2_full:.4f}")
+print(f"  Random Forest R²:     {rf_r2:.4f}")
+print(f"\n  Interpretation: Random Forest captures non-linear relationships better,")
+print(f"  explaining an additional {(rf_r2 - r2_full)*100:.1f}% of variance.")
+```
+
+## Methodology Explanation
+
+| Metric | Interpretation | Pros | Cons |
+|--------|---|---|---|
+| **Pearson Correlation** | Simple linear relationship | Easy to calculate | Only captures linear relationships |
+| **Std Regression Coef** | Direct effect controlling for others | Considers multicollinearity | Affected by scaling |
+| **Drop-One** | Model degradation | Measures overall importance | Computationally intensive |
+| **Johnson's Epsilon** | Decomposes R² among features | Fair allocation of variance | Assumes additive effects |
+| **Shapley Values** | Game theory approach | Theoretically sound, fair | Computationally expensive |
+| **RF Gini** | Tree-based importance | Captures non-linearity | Less interpretable |
+
+## Recommendations
+
+Based on this analysis:
+
+1. **Focus on consensus drivers**: Features that rank high across multiple methods (especially Shapley values and RF importance) are the most robust drivers of satisfaction.
+
+2. **Consider the method**: 
+   - Use Pearson correlations for simple univariate relationships
+   - Use standardized regression for controlled effects
+   - Use Shapley values for fair contribution allocation
+   - Use Random Forest importance for non-linear relationships
+
+3. **Business implications**: Features with high importance should be prioritized in marketing communications and product improvements.
+
+```{python}
+#| echo: false
+print("\n" + "="*110)
+print("Analysis complete. Sample size: {:,} | Features: {} | Model R²: {:.4f} (LR) / {:.4f} (RF)".format(
+    len(df), len(features), r2_full, rf_r2))
+print("="*110)
+```
+
+---
+
+*Generated: Customer Satisfaction Key Drivers Analysis*
