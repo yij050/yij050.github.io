@@ -2468,12 +2468,12 @@ th {
 <section id="model-comparison" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="model-comparison"><span class="header-section-number">6</span> Model Comparison</h2>
 <div class="highlight-box">
-<p><strong>Linear Regression vs. Random Forest</strong></p>
+<p><strong>Linear Regression vs.&nbsp;Random Forest</strong></p>
 <ul>
-<li><strong>Linear Regression R²</strong>: {python} #| echo: false print(f”{r2_full:.4f}“) - Explains {python} #| echo: false print(f”{r2_full*100:.1f}%“) of variance</li>
-<li><strong>Random Forest R²</strong>: {python} #| echo: false print(f”{rf_r2:.4f}“) - Explains {python} #| echo: false print(f”{rf_r2*100:.1f}%“) of variance</li>
+<li><strong>Linear Regression R²:</strong> 0.1090 - Explains 10.9% of variance</li>
+<li><strong>Random Forest R²:</strong> 0.2419 - Explains 24.2% of variance</li>
 </ul>
-<p><strong>Interpretation</strong>: Random Forest captures an additional {python} #| echo: false print(f”{(rf_r2-r2_full)*100:.1f}%“) of variance through non-linear relationships and feature interactions. This suggests satisfaction drivers have complex interactions beyond simple linear effects.</p>
+<p><strong>Interpretation:</strong> Random Forest captures an additional 13.3% of variance through non-linear relationships and feature interactions. This suggests satisfaction drivers have complex interactions beyond simple linear effects.</p>
 </div>
 <hr>
 </section>
