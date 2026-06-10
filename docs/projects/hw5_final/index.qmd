@@ -415,8 +415,3 @@ This multi-method analysis reveals that **customer satisfaction is primarily dri
 :::
 
 ---
-
-*Report generated: {python} #| echo: false
-import datetime
-print(datetime.datetime.now().strftime("%B %d, %Y"))
-*
