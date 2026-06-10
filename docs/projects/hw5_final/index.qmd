@@ -324,15 +324,10 @@ print(display_table.to_markdown(index=False))
 ::: {.highlight-box}
 **Linear Regression vs. Random Forest**
 
-- **Linear Regression R²**: {python} #| echo: false
-print(f"{r2_full:.4f}") - Explains {python} #| echo: false
-print(f"{r2_full*100:.1f}%") of variance
-- **Random Forest R²**: {python} #| echo: false
-print(f"{rf_r2:.4f}") - Explains {python} #| echo: false
-print(f"{rf_r2*100:.1f}%") of variance
+- **Linear Regression R²:** 0.1090 — Explains 10.9% of variance
+- **Random Forest R²:** 0.2419 — Explains 24.2% of variance
 
-**Interpretation**: Random Forest captures an additional {python} #| echo: false
-print(f"{(rf_r2-r2_full)*100:.1f}%") of variance through non-linear relationships and feature interactions. This suggests satisfaction drivers have complex interactions beyond simple linear effects.
+**Interpretation:** Random Forest captures an additional **13.3%** of variance through non-linear relationships and feature interactions. This suggests satisfaction drivers have complex interactions beyond simple linear effects.
 :::
 
 ---
